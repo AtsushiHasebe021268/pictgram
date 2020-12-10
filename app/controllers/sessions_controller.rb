@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       render :new
     end 
   end 
+
   
   def destroy
     log_out
@@ -27,6 +28,11 @@ class SessionsController < ApplicationController
    session.delete(:user_id)
    @current_user = nil
  end
+ private
+   def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmarion)
+    
+   end
 end 
 
 
